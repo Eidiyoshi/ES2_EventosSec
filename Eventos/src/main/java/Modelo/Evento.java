@@ -183,40 +183,60 @@ public class Evento {
     
     public String exibirEvento()
     {
-        String resultado = "Nome:" +  this.nome + "\n";
-        resultado += "Descrição:" + this.descricao  + "\n";
-        resultado += "Duração em dias:" + String.valueOf(duracaoEmDias) + "\n";
-        resultado += "Quantidade Convidados:" + String.valueOf(quantidadeConvidados) + "\n";
-        resultado += "Nome do lugar:" + String.valueOf(localizacao.getNome()) + "\n";
-        resultado += "Rua do lugar:" + String.valueOf(localizacao.getRua()) + "\n";
-        resultado += "Bairro do lugar:" + String.valueOf(localizacao.getBairro()) + "\n";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String data = dataHoraInicio.format(formatter);
-        resultado += "Data inicio:" + data + "\n";
-        data = dataHoraFim.format(formatter);
-        resultado += "Data Fim:" + data + "\n";
-        resultado += "Status:" + status.name() + "\n";
-        resultado += "Buffet:\n";
-        if(buffet != null)
-        {
-            resultado += buffet.exibir() + "\n";
-        }
-        resultado += "Funcionários:\n";
+      String  dataFinal = dataHoraFim.format(formatter);
+            String   resultado = "<h2>Informações do Evento</h2>\n" +
+       "<table>\n" +
+       "  <tr><th>Nome</th><td>"+this.nome + "</td></tr>\n" +
+       "  <tr><th>Descrição</th><td>"+ this.descricao + "</td></tr>\n" +
+       "  <tr><th>Duração (dias)</th><td>"+ String.valueOf(duracaoEmDias) + "</td></tr>\n" +
+       "  <tr><th>Quantidade de Convidados</th><td>"+ String.valueOf(quantidadeConvidados) +"</td></tr>\n" +
+       "  <tr><th>Rua</th><td>" +localizacao.getRua()+"</td></tr>\n" +
+       "  <tr><th>Bairro</th><td>" +localizacao.getBairro()+"</td></tr>\n" +
+       "  <tr><th>Número</th><td>" +String.valueOf(localizacao.getNumero())+"</td></tr>\n" +
+       "  <tr><th>Data Início</th><td>"+ data +"</td></tr></th><td><!-- data_inicio --></td></tr>\n" +
+
+
+       "  <tr><th>Data Fim</th><td>"+ dataFinal +"</td></tr>\n" +
+       "  <tr><th>Status</th><td>" + status.name() + "</td></tr>\n" +
+                    "</table>\n" +
+       "\n" +
+                    "<h3>Buffet</h3>\n" +
+                    "<table>\n" ;
+       if(buffet != null)
+               {
+                   resultado += buffet.exibir() + "\n";
+               }
+       resultado += "</table>\n" +
+       "\n" +
+       "<h3>Funcionários</h3>\n" +
+       "<table>\n" +
+       "  <tr><th>Nome</th><th>Pagamento Total</th></tr>\n" ;
         for(Funcionario i: funcionarios)
-        {
-            resultado += i.getNome() + "\n";
-            resultado += String.valueOf(i.getPagamentoTotal()) + "\n";
-        }
-        resultado += "\n";
-        resultado += "Despesas adicionais:\n";
-        for(DespesaAdicional i: despesasAdicionais)
-        {
-            resultado += i.getNome() + "\n";
-            resultado += String.valueOf(i.getCusto()) + "\n";
-        }
-        resultado += "\n";
-        resultado += "Custo total:" + String.valueOf(custoTotal) + "\n";
-        resultado += "Custo por convidado:" + String.valueOf(custoPorConvidado) + "\n";
+               {
+                   resultado += i.getNome()+ " ";
+                   resultado += String.valueOf(i.getPagamentoTotal()) + "\n";
+               }
+       resultado += "</table>\n" +
+       "\n" +
+       "<h3>Despesas Adicionais</h3>\n" +
+       "<table>\n" +
+       "  <tr><th>Nome</th><th>Custo</th></tr>\n" ;
+       for(DespesaAdicional i: despesasAdicionais)
+               {
+                   resultado += i.getNome() + " ";
+                   resultado += String.valueOf(i.getCusto()) + "\n";
+               }
+
+        resultado += "</table>\n" +
+       "\n" +
+       "<h3>Valores Totais</h3>\n" +
+       "<table>\n" +
+       "  <tr><th>Custo Total</th><td>"+ String.valueOf(custoTotal) + "</td></tr>\n" +
+       "  <tr><th>Custo por Convidado</th><td>" + String.valueOf(custoPorConvidado) + "</td></tr>\n" +
+       "</table>";
+        
         return resultado;
     }
 }

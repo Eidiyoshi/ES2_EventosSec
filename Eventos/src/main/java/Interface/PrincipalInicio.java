@@ -169,21 +169,11 @@ public class PrincipalInicio extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
          // TODO add your handling code here:
         String texto = controlador.exibirelatorioEventos();
-        JTextArea evento = new JTextArea(texto, 20, 50);
-        evento.setLineWrap(true);
-        evento.setWrapStyleWord(true);
-        evento.setEditable(false);
-
-        JScrollPane scroll = new JScrollPane(evento);
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
-        JFrame frame = new JFrame("Exibição de Texto Grande");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.add(scroll);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+       
+        
+        RelatorioEvento relatorio = new RelatorioEvento(this, true, texto);
+        relatorio.setLocationRelativeTo(this);
+        relatorio.setVisible(true);
         
         //RelatorioEvento relatorio = new RelatorioEvento(this, true, texto);
         //relatorio.setLocationRelativeTo(this);
@@ -226,9 +216,25 @@ public class PrincipalInicio extends javax.swing.JFrame {
 
         if (result == JOptionPane.OK_OPTION) {
             String nomeEvento = nomeField.getText();
-            String texto = controlador.exibirEvento(nomeEvento);
-            
-            JOptionPane.showMessageDialog(null, texto);
+            String texto = "<!DOCTYPE html>\n" +
+"<html lang=\"pt-BR\">\n" +
+"<head>\n" +
+"<meta charset=\"UTF-8\">\n" +
+"<title>Resumo do Evento</title>\n" +
+"<style>\n" +
+"  body { font-family: Arial, sans-serif; margin: 20px; }\n" +
+"  table { border-collapse: collapse; width: 100%; }\n" +
+"  th, td { border: 1px solid #444; padding: 8px; }\n" +
+"  th { background-color: #ddd; }\n" +
+"</style>\n" +
+"</head>\n" +
+"<body>";
+             texto += controlador.exibirEvento(nomeEvento);
+             texto += "</body>\n" +
+"</html>";
+             RelatorioEvento relatorio = new RelatorioEvento(this, true, texto);
+        relatorio.setLocationRelativeTo(this);
+        relatorio.setVisible(true);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 

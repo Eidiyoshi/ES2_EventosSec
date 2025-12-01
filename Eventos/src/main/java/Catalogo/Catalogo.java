@@ -40,11 +40,25 @@ public class Catalogo {
     
     public String exibirelatorioEventos()
     {
-        String resultado = "";
+        String resultado = "<!DOCTYPE html>\n" +
+"<html lang=\"pt-BR\">\n" +
+"<head>\n" +
+"<meta charset=\"UTF-8\">\n" +
+"<title>Resumo do Evento</title>\n" +
+"<style>\n" +
+"  body { font-family: Arial, sans-serif; margin: 20px; }\n" +
+"  table { border-collapse: collapse; width: 100%; }\n" +
+"  th, td { border: 1px solid #444; padding: 8px; }\n" +
+"  th { background-color: #ddd; }\n" +
+"</style>\n" +
+"</head>\n" +
+"<body>";
         for(Evento i: eventos)
         {
             resultado += i.exibirEvento();
         }
+        resultado += "</body>\n" +
+"</html>";
         return resultado;
     }
     

@@ -6,6 +6,7 @@ package Interface;
 
 import Controle.Controlador;
 import Modelo.CategoriaCusto;
+import Modelo.Status;
 import Modelo.TipoItem;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -359,6 +360,22 @@ public class CardEvento extends javax.swing.JPanel {
         panel.add(new JLabel(nomeDoEvento));
         panel.add(eventoField);
         
+        
+        JRadioButton EncerrarButton = new JRadioButton("Encerrar");
+        EncerrarButton.setActionCommand("CUSTO_FIXO");
+        JRadioButton EM_ANDAMENTOButton = new JRadioButton("Em andamento");
+        EM_ANDAMENTOButton.setActionCommand("Em andamento");
+        
+        ButtonGroup group = new ButtonGroup();
+        group.add(EncerrarButton);
+        group.add(EM_ANDAMENTOButton);
+        
+        
+        panel.add(new JLabel("Categoria CUSTO_FIXO ou CUSTO_VARIAVEL:"));
+        panel.add(new JLabel(""));
+        panel.add(EncerrarButton);
+        panel.add(EM_ANDAMENTOButton);
+     
         Component frame = null;
         
         int result = JOptionPane.showConfirmDialog(
@@ -370,7 +387,15 @@ public class CardEvento extends javax.swing.JPanel {
 
         if (result == JOptionPane.OK_OPTION) {
             String nomeEvento = eventoField.getText();
-            controlador.cancelarEvento(nomeEvento);
+            if(EncerrarButton.isSelected())
+            {
+                controlador.alterarStatus(nomeEvento, Status.ENCERRADO);
+            }
+            else if(EM_ANDAMENTOButton.isSelected())
+            {
+                controlador.alterarStatus(nomeEvento, Status.EM_ANDAMENTO);
+            }
+            
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
