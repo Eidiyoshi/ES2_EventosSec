@@ -5,6 +5,7 @@
 package Interface;
 
 import Controle.Controlador;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,6 +13,7 @@ import java.util.List;
  * @author danie
  */
 public class ListaEventos extends javax.swing.JDialog {
+    private ArrayList<CardEvento> cards;
 
     /**
      * Creates new form ListaEventos
@@ -22,10 +24,12 @@ public class ListaEventos extends javax.swing.JDialog {
     public ListaEventos(java.awt.Frame parent, boolean modal, Controlador controlador) {
         super(parent, modal);
         initComponents();
-        
+        cards = new ArrayList<>();
         List<String> eventos = controlador.listarNomesEventos();
         for(String evento: eventos){
-            jPanel1.add(new CardEvento(evento, controlador));
+            CardEvento card = new CardEvento(evento, controlador);
+            cards.add(card);
+            jPanel1.add(card);
         }
     }
 
@@ -40,6 +44,10 @@ public class ListaEventos extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -51,8 +59,48 @@ public class ListaEventos extends javax.swing.JDialog {
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        jPanel2.setLayout(new java.awt.BorderLayout(10, 10));
+        jPanel2.add(jTextField1, java.awt.BorderLayout.CENTER);
+
+        jButton1.setText("Buscar evento");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, java.awt.BorderLayout.LINE_END);
+
+        jButton2.setText("Reset");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton2, java.awt.BorderLayout.PAGE_END);
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jPanel1.removeAll();
+        for(CardEvento card: cards){
+            if(card.getNomEvento().contains(jTextField1.getText())){
+               jPanel1.add(card);
+            }
+        }
+        jPanel1.updateUI();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jPanel1.removeAll();
+        for(CardEvento card: cards){
+            jPanel1.add(card);
+        }
+        jPanel1.updateUI();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -97,7 +145,11 @@ public class ListaEventos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
