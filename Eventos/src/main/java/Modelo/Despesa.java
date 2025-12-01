@@ -20,6 +20,10 @@ public class Despesa {
     public String getNome() {
         return nome;
     }
+
+    public CategoriaCusto getCategoriaCusto() {
+        return categoriaCusto;
+    }
     
     
     

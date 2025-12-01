@@ -187,8 +187,9 @@ public class Evento {
         resultado += "Descrição:" + this.descricao  + "\n";
         resultado += "Duração em dias:" + String.valueOf(duracaoEmDias) + "\n";
         resultado += "Quantidade Convidados:" + String.valueOf(quantidadeConvidados) + "\n";
-        resultado += "Longitude:" + String.valueOf(localizacao.getLongitude()) + "\n";
-        resultado += "Latitude:" + String.valueOf(localizacao.getLatitude()) + "\n";
+        resultado += "Nome do lugar:" + String.valueOf(localizacao.getNome()) + "\n";
+        resultado += "Rua do lugar:" + String.valueOf(localizacao.getRua()) + "\n";
+        resultado += "Bairro do lugar:" + String.valueOf(localizacao.getBairro()) + "\n";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String data = dataHoraInicio.format(formatter);
         resultado += "Data inicio:" + data + "\n";

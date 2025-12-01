@@ -10,28 +10,36 @@ package Modelo;
  */
 public class Localizacao {
     private String nome;
-    private double latitude;
-    private double longitude;
+    private String rua;
+    private String bairro;
+    private String numero;
     private double custoAluguelPorDia;
     private double custoAluguelTotal;
 
-    public Localizacao(String nome, double latitude, double longitude, double custoAluguelPorDia) {
+    public Localizacao(String nome, String rua, String bairro, String numero, double custoAluguelPorDia) {
         this.nome = nome;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.numero = numero;
         this.custoAluguelPorDia = custoAluguelPorDia;
     }
 
-    public double getLatitude() {
-        return latitude;
+    public String getRua() {
+        return rua;
     }
 
-    public double getLongitude() {
-        return longitude;
+    public String getBairro() {
+        return bairro;
     }
-    
-    
-    
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
     public void calcularCustoAluguelTotal(double custoAluguelPorDia, int duracaoEmDias)
     {
         this.custoAluguelTotal = custoAluguelPorDia * duracaoEmDias;

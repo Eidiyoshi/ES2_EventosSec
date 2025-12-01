@@ -57,8 +57,6 @@ public class Catalogo {
     for (Evento e : eventos) {
         nomes.add(e.getNome());
     }
-    nomes.add("rrrrrrr");
-    nomes.add("fffffff");
     Collections.sort(nomes);
     return nomes;
 }

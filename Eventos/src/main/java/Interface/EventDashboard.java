@@ -73,7 +73,7 @@ public class EventDashboard extends JFrame {
                     }
                     JOptionPane.showMessageDialog(this, "Despesa registrada.");
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Erro : " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

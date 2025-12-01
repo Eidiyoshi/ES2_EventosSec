@@ -5,6 +5,8 @@
 package Interface;
 
 import Controle.Controlador;
+import Factory.FactoryLocalizacao;
+import Modelo.Localizacao;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.time.LocalDateTime;
@@ -109,8 +111,9 @@ public class Inicial extends javax.swing.JFrame {
         JTextField descricaoField = new JTextField(15);
         JTextField quantidadeField = new JTextField(5);
         JTextField localField = new JTextField(10);
-        JTextField longitudeField = new JTextField(10);
-        JTextField latitudeField = new JTextField(10);
+        JTextField ruaField = new JTextField(10);
+        JTextField bairroField = new JTextField(10);
+        JTextField numeroField = new JTextField(10);
         JTextField aluguelDiarioField = new JTextField(10);
         JTextField inicioField = new JTextField(15);
         JTextField fimField = new JTextField(15);
@@ -125,10 +128,12 @@ public class Inicial extends javax.swing.JFrame {
         panel.add(quantidadeField);
         panel.add(new JLabel("Nome do local:"));
         panel.add(localField);
-        panel.add(new JLabel("Longitude:"));
-        panel.add(longitudeField);
-        panel.add(new JLabel("Latitude:"));
-        panel.add(latitudeField);
+        panel.add(new JLabel("Rua:"));
+        panel.add(ruaField);
+        panel.add(new JLabel("Bairro:"));
+        panel.add(bairroField);
+        panel.add(new JLabel("Numero:"));
+        panel.add(numeroField);
         panel.add(new JLabel("Aluguel Diario:"));
         panel.add(aluguelDiarioField);
         panel.add(new JLabel("Data inicio (exmplo:2025-11-03 10:30:00):"));
@@ -151,7 +156,13 @@ public class Inicial extends javax.swing.JFrame {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime dataHoraInicio = LocalDateTime.parse(inicioField.getText(), formatter);
             LocalDateTime dataHoraFim = LocalDateTime.parse(fimField.getText(), formatter);
-            controlador.validarInputsDeRegistroDoEvento(nomeField.getText(), descricaoField.getText(), Integer.parseInt(quantidadeField.getText()), localField.getText(), Float.parseFloat(latitudeField.getText()), Float.parseFloat(longitudeField.getText()), Float.parseFloat(aluguelDiarioField.getText()), dataHoraInicio, dataHoraFim);
+            
+            FactoryLocalizacao fLoc = new FactoryLocalizacao();
+            Localizacao loc = fLoc.criarLocalizacao(localField.getText(), ruaField.getText(), bairroField.getText(), numeroField.getText(), Float.parseFloat(aluguelDiarioField.getText()));
+            if(loc == null){
+                JOptionPane.showMessageDialog(this, "Erro: Localização inválida", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            controlador.validarInputsDeRegistroDoEvento(nomeField.getText(), descricaoField.getText(), Integer.parseInt(quantidadeField.getText()), loc , dataHoraInicio, dataHoraFim);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -22,6 +22,9 @@ import javax.swing.JTextField;
  */
 public class CardEvento extends javax.swing.JPanel {
     private Controlador controlador;
+    private static String nomeDoEvento = "Nome do evento:";;
+    private static String preenchaInformacoes = "Preencha as informações:";
+
 
     /**
      * Creates new form CardEvento
@@ -148,7 +151,7 @@ public class CardEvento extends javax.swing.JPanel {
         JTextField descricaoField = new JTextField(15);
         JTextField custoPorPessoaField = new JTextField(15);
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(new JLabel(nomeDoEvento));
         panel.add(eventoField);
         panel.add(new JLabel("Nome da Despesa adicional:"));
         panel.add(nomeField);
@@ -168,7 +171,7 @@ public class CardEvento extends javax.swing.JPanel {
         Component frame = null;
         int result = JOptionPane.showConfirmDialog(
             frame, panel,
-            "Preencha as informações",
+            preenchaInformacoes,
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.PLAIN_MESSAGE
         );
@@ -198,9 +201,9 @@ public class CardEvento extends javax.swing.JPanel {
         JTextField eventoField = new JTextField(15);
         eventoField.setText(jLabel1.getText());
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Nome do Item do buffet:"));
+        panel.add(new JLabel("Nome do Item do Buffet:"));
         panel.add(nomeField);
-        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(new JLabel(nomeDoEvento));
         panel.add(eventoField);
 
         Component frame = null;
@@ -228,7 +231,7 @@ public class CardEvento extends javax.swing.JPanel {
         panel.add(new JLabel("Nome do Item do buffet:"));
         panel.add(nomeField);
         panel.add(new JLabel(""));
-        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(new JLabel(nomeDoEvento));
         panel.add(eventoField);
         panel.add(new JLabel(""));
         panel.add(new JLabel("Tipo BEBIDA ou COMIDA:"));
@@ -277,7 +280,7 @@ public class CardEvento extends javax.swing.JPanel {
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
         panel.add(new JLabel("Nome do Item do buffet:"));
         panel.add(nomeField);
-        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(new JLabel(nomeDoEvento));
         panel.add(eventoField);
 
         Component frame = null;
@@ -303,7 +306,7 @@ public class CardEvento extends javax.swing.JPanel {
         JTextField funcaoField = new JTextField(15);
         JTextField custoField = new JTextField(15);
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(new JLabel(nomeDoEvento));
         panel.add(eventoField);
         panel.add(new JLabel("Nome do Funcionário:"));
         panel.add(nomeField);
@@ -353,14 +356,14 @@ public class CardEvento extends javax.swing.JPanel {
         JTextField eventoField = new JTextField(15);
         eventoField.setText(jLabel1.getText());
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(new JLabel(nomeDoEvento));
         panel.add(eventoField);
         
         Component frame = null;
         
         int result = JOptionPane.showConfirmDialog(
             frame, panel,
-            "Preencha as informações",
+            preenchaInformacoes,
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.PLAIN_MESSAGE
         );
@@ -380,7 +383,7 @@ public class CardEvento extends javax.swing.JPanel {
         JTextField novadescricaoField = new JTextField(15);
         JTextField novocustoPorPessoaField = new JTextField(15);
         JPanel panel = new JPanel(new GridLayout(0, 3, 7, 5));
-        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(new JLabel(nomeDoEvento));
         panel.add(eventoField);
         panel.add(new JLabel(""));
         panel.add(new JLabel("Nome da Despesa adicional:"));

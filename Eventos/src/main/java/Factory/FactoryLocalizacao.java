@@ -11,8 +11,13 @@ import Modelo.Localizacao;
  * @author Arthur
  */
 public class FactoryLocalizacao {
-    public Localizacao criarLocalizacao(String nome, double latitude, double longitude, double custoAluguelPorDia)
+    public Localizacao criarLocalizacao(String nome, String rua, String bairro, String numero, double custoAluguelPorDia)
     {
-        return new Localizacao(nome, latitude, longitude, custoAluguelPorDia);
+        if(!nome.equals("") && !rua.equals("") ){
+            return new Localizacao(nome, rua, bairro, numero, custoAluguelPorDia);
+        }
+        
+        return null;
+        
     }
 }

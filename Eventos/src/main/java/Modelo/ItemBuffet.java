@@ -22,6 +22,10 @@ public class ItemBuffet {
     public String getNome() {
         return nome;
     }
+
+    public TipoItem getTipoitem() {
+        return tipoitem;
+    }
     
     
     

@@ -26,7 +26,6 @@ import javax.swing.JOptionPane;
 public class Controlador {
     
     private Catalogo catalogo;
-    private String eventoSelecionado;
     
     public Controlador () {
         catalogo = new Catalogo();
@@ -43,16 +42,16 @@ public class Controlador {
                 evento.removerFuncionario(func);
                 evento.calcularCustoTotalEvento();
                 evento.calcularCustoPorConvidado();
-                JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
+                JOptionPane.showMessageDialog(null, "Operação remover funcionário concluída", "Concluído remover funcionario", 1);
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+                JOptionPane.showMessageDialog(null, "Erro funcionário desconhecido detectado", "Aviso Funcionario", 0);
             }
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+            JOptionPane.showMessageDialog(null, "Erro evento desconhecido detectado", "Aviso Evento", 0);
         }
     }
     
@@ -67,16 +66,16 @@ public class Controlador {
                 evento.removerItemBuffet(item);
                 evento.calcularCustoTotalEvento();
                 evento.calcularCustoPorConvidado();
-                JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
+                JOptionPane.showMessageDialog(null, "Operação remover item buffet concluída", "Concluído remover item buffet", 1);
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+                JOptionPane.showMessageDialog(null, "Erro item não detectado", "Aviso item", 0);
             }
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+            JOptionPane.showMessageDialog(null, "Erro evento não detectado na operação remover item buffet", "Aviso de evento", 0);
         }
     }
     
@@ -91,33 +90,31 @@ public class Controlador {
                 evento.removerDespesaAdicional(despesa);
                 evento.calcularCustoTotalEvento();
                 evento.calcularCustoPorConvidado();
-                JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
+                JOptionPane.showMessageDialog(null, "Operação remover despesa adicional concluída", "Concluído remover despesa adicional", 1);
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+                JOptionPane.showMessageDialog(null, "Erro despesa não detectado", "Aviso despesa", 0);
             }
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+            JOptionPane.showMessageDialog(null, "Erro evento não detectado", "Aviso evento", 0);
         }
     }
     
-    public void validarInputsDeRegistroDoEvento(String nome, String descricao, int quantidadeConvidados, String nomeLocalizacao, double latitude, double longitude, double custoAluguelPorDia, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim)
+    public void validarInputsDeRegistroDoEvento(String nome, String descricao, int quantidadeConvidados, Localizacao loc, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim)
     {
-        FactoryLocalizacao fLoc = new FactoryLocalizacao();
-        Localizacao loc = fLoc.criarLocalizacao(nomeLocalizacao, latitude, longitude, custoAluguelPorDia);
         FactoryEvento fEve = new FactoryEvento();
         Evento eve = fEve.criarEvento(nome, descricao, quantidadeConvidados, dataHoraInicio, dataHoraFim);
         eve.calcularDuracaoEmDias();
-        loc.calcularCustoAluguelTotal(custoAluguelPorDia, eve.getDuracaoEmDias());
+        loc.calcularCustoAluguelTotal(loc.getCustoAluguelPorDia(), eve.getDuracaoEmDias());
         eve.setLocalizacao(loc);
         eve.calcularCustoTotalEvento();
         eve.calcularCustoPorConvidado();
         eve.atualizarStatus();
         catalogo.adicionarEvento(eve);
-        JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
+        JOptionPane.showMessageDialog(null, "Operação validar evento concluída", "Concluído", 1);
     }
     
     public void validarInputsDeRegistroDeDespesaAdicional(String nomeEvento, String nomeDespesa, CategoriaCusto categoriaCusto, String descricao, double custo)
@@ -125,7 +122,7 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+            JOptionPane.showMessageDialog(null, "Erro evento não detectado", "Aviso evento", 0);
         }
         else
         {
@@ -136,7 +133,7 @@ public class Controlador {
             eve.adicionarDespesaAdicional(des);
             eve.calcularCustoTotalEvento();
             eve.calcularCustoPorConvidado();
-            JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
+            JOptionPane.showMessageDialog(null, "Operação despesa concluída", "Concluído", 1);
         }
         
     }
@@ -151,12 +148,12 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-        	JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+        	JOptionPane.showMessageDialog(null, "Erro evento não foi detectado", "Aviso evento não foi encontrado", 0);
         }
         else
         {
             catalogo.removerEvento(eve);
-            JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
+            JOptionPane.showMessageDialog(null, "Operação cancelar evento concluída", "Concluído cancelar evento", 1);
         }
     }
     
@@ -165,7 +162,7 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-        	JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+        	JOptionPane.showMessageDialog(null, "Erro evento não encontrado", "Aviso evento não encontrado", 0);
                 return "";
         }
         else
@@ -179,12 +176,12 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-        	JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+        	JOptionPane.showMessageDialog(null, "Erro evento não foi encontrado", "Aviso evento não encontrado", 0);
         }
         else
         {
             eve.alterarStatus(novoStatus);
-            JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
+            JOptionPane.showMessageDialog(null, "Operação alterar status concluída", "Concluído alterar status", 1);
         }
     }
     
@@ -193,21 +190,21 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-        	JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+        	JOptionPane.showMessageDialog(null, "Erro evento não foi detectado", "Aviso evento não foi detectado", 0);
         }
         else
         {
             DespesaAdicional des = eve.buscarDespesaAdicional(nomeDespesa);
             if(des == null)
             {
-                JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+                JOptionPane.showMessageDialog(null, "Erro despesa não foi detectado", "Aviso despesa não foi encontrada", 0);
             }
             else
             {
                 des.alterarDespesaAdicional(novoNomeDespesa, novaCategoriaCusto.name(), novaDescricao, novoCusto);
                 eve.calcularCustoTotalEvento();
                 eve.calcularCustoPorConvidado();
-                JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
+                JOptionPane.showMessageDialog(null, "Operação alterar despesa adicional concluída", "Conclusão alterar despesa adicional", 1);
             }
         }
     }
@@ -217,7 +214,7 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+            JOptionPane.showMessageDialog(null, "Erro evento", "Aviso do evento", 0);
         }
         else
         {
@@ -227,7 +224,7 @@ public class Controlador {
             eve.adicionarFuncionario(func);
             eve.calcularCustoTotalEvento();
             eve.calcularCustoPorConvidado();
-            JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
+            JOptionPane.showMessageDialog(null, "Operação adicionar funcionário concluída", "Conclusão adicionar funcionário", 1);
         }
     }
     
@@ -236,7 +233,7 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+            JOptionPane.showMessageDialog(null, "Erro evento não foi achado", "Aviso evento não achado", 0);
         }
         else
         {
@@ -246,7 +243,7 @@ public class Controlador {
             eve.adicionarFuncionario(novo);
             eve.calcularCustoTotalEvento();
             eve.calcularCustoPorConvidado();
-            JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
+            JOptionPane.showMessageDialog(null, "Operação adicionar funcionário concluída", "Conclusão funcionário adicionado", 1);
         }
     }
     
@@ -255,7 +252,7 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
+            JOptionPane.showMessageDialog(null, "Erro evento não achado", "Aviso evento não achado", 0);
         }
         else
         {
@@ -274,7 +271,7 @@ public class Controlador {
             eve.calcularCustoTotalBuffet();
             eve.calcularCustoTotalEvento();
             eve.calcularCustoPorConvidado();
-            JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
+            JOptionPane.showMessageDialog(null, "Operação registro de item buffet concluída", "Aviso", 1);
         }
     }
     public List<String> listarNomesEventos() {

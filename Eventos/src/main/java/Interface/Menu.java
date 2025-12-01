@@ -1,6 +1,7 @@
  package Interface;
 
 import Controle.Controlador;
+import Factory.FactoryLocalizacao;
 import Modelo.CategoriaCusto;
 import Modelo.Localizacao;
 import Modelo.Status;
@@ -17,7 +18,9 @@ import javax.swing.*;
 
 public class Menu extends javax.swing.JFrame {
 
-    private Controlador controlador;
+    private Controlador controlador;;
+    private static String nomeDoEvento = "Nome do evento:";
+
 
     public Menu() {
         controlador = new Controlador();
@@ -338,7 +341,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         JTextField nomeField = new JTextField(15);
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(new JLabel(nomeDoEvento));
         panel.add(nomeField);
         Component frame = null;
         int result = JOptionPane.showConfirmDialog(
@@ -363,7 +366,7 @@ public class Menu extends javax.swing.JFrame {
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
         panel.add(new JLabel("Nome do Funcionario:"));
         panel.add(nomeField);
-        panel.add(new JLabel("Nome do Evento:"));
+        panel.add(new JLabel(nomeDoEvento));
         panel.add(eventoField);
 
         Component frame = null;
@@ -411,7 +414,7 @@ public class Menu extends javax.swing.JFrame {
         JTextField nomeField = new JTextField(15);
         JTextField eventoField = new JTextField(15);
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.add(new JLabel("Nome da Despesa adicional:"));
+        panel.add(new JLabel("Nome da Despesa Adicional:"));
         panel.add(nomeField);
         panel.add(new JLabel("Nome do Evento:"));
         panel.add(eventoField);
@@ -437,8 +440,9 @@ public class Menu extends javax.swing.JFrame {
         JTextField descricaoField = new JTextField(15);
         JTextField quantidadeField = new JTextField(5);
         JTextField localField = new JTextField(10);
-        JTextField longitudeField = new JTextField(10);
-        JTextField latitudeField = new JTextField(10);
+        JTextField ruaField = new JTextField(10);
+        JTextField bairroField = new JTextField(10);
+        JTextField numeroField = new JTextField(10);
         JTextField aluguelDiarioField = new JTextField(10);
         JTextField inicioField = new JTextField(15);
         JTextField fimField = new JTextField(15);
@@ -453,10 +457,12 @@ public class Menu extends javax.swing.JFrame {
         panel.add(quantidadeField);
         panel.add(new JLabel("Nome do local:"));
         panel.add(localField);
-        panel.add(new JLabel("Longitude:"));
-        panel.add(longitudeField);
-        panel.add(new JLabel("Latitude:"));
-        panel.add(latitudeField);
+        panel.add(new JLabel("Rua:"));
+        panel.add(ruaField);
+        panel.add(new JLabel("Bairro:"));
+        panel.add(bairroField);
+        panel.add(new JLabel("Numero:"));
+        panel.add(numeroField);
         panel.add(new JLabel("Aluguel Diario:"));
         panel.add(aluguelDiarioField);
         panel.add(new JLabel("Data inicio (exmplo:2025-11-03 10:30:00):"));
@@ -469,7 +475,7 @@ public class Menu extends javax.swing.JFrame {
         // Exibindo o JOptionPane
         int result = JOptionPane.showConfirmDialog(
                 frame, panel,
-                "Preencha as informações",
+                "Preencha as Informações",
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.PLAIN_MESSAGE
         );
@@ -479,7 +485,14 @@ public class Menu extends javax.swing.JFrame {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime dataHoraInicio = LocalDateTime.parse(inicioField.getText(), formatter);
             LocalDateTime dataHoraFim = LocalDateTime.parse(fimField.getText(), formatter);
-            controlador.validarInputsDeRegistroDoEvento(nomeField.getText(), descricaoField.getText(), Integer.parseInt(quantidadeField.getText()), localField.getText(), Float.parseFloat(latitudeField.getText()), Float.parseFloat(longitudeField.getText()), Float.parseFloat(aluguelDiarioField.getText()), dataHoraInicio, dataHoraFim);
+            
+            FactoryLocalizacao fLoc = new FactoryLocalizacao();
+            Localizacao loc = fLoc.criarLocalizacao(localField.getText(), ruaField.getText(), bairroField.getText(), numeroField.getText(), Float.parseFloat(aluguelDiarioField.getText()));
+            if(loc == null){
+                JOptionPane.showMessageDialog(this, "Erro: Localização inválida", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            controlador.validarInputsDeRegistroDoEvento(nomeField.getText(), descricaoField.getText(), Integer.parseInt(quantidadeField.getText()), loc , dataHoraInicio, dataHoraFim);
         }
     }//GEN-LAST:event_registrarEventoActionPerformed
 
@@ -520,7 +533,7 @@ public class Menu extends javax.swing.JFrame {
         Component frame = null;
         int result = JOptionPane.showConfirmDialog(
             frame, panel,
-            "Preencha as informações",
+            "Preencha as Informações",
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.PLAIN_MESSAGE
         );
@@ -556,7 +569,7 @@ public class Menu extends javax.swing.JFrame {
         
         int result = JOptionPane.showConfirmDialog(
             frame, panel,
-            "Preencha as informações",
+            "Preencha as informações ",
             JOptionPane.OK_CANCEL_OPTION,
             JOptionPane.PLAIN_MESSAGE
         );

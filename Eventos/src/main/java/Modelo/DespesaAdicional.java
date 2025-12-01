@@ -21,6 +21,10 @@ public class DespesaAdicional extends Despesa{
     public double getCusto() {
         return this.custo;
     }
+
+    public String getDescricao() {
+        return descricao;
+    }
     
     
     
