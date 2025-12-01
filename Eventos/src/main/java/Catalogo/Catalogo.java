@@ -6,6 +6,8 @@ package Catalogo;
 
 import Modelo.Evento;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -36,7 +38,7 @@ public class Catalogo {
         return null;
     }
     
-    public String exibirEventos()
+    public String exibirelatorioEventos()
     {
         String resultado = "";
         for(Evento i: eventos)
@@ -50,4 +52,15 @@ public class Catalogo {
     {
         this.eventos.remove(evento);
     }
+    public List<String> listarNomesEventos() {
+    List<String> nomes = new ArrayList<>();
+    for (Evento e : eventos) {
+        nomes.add(e.getNome());
+    }
+    nomes.add("rrrrrrr");
+    nomes.add("fffffff");
+    Collections.sort(nomes);
+    return nomes;
+}
+
 }

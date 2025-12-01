@@ -36,5 +36,23 @@ public class Localizacao {
     {
         this.custoAluguelTotal = custoAluguelPorDia * duracaoEmDias;
     }
+
+    public double getCustoAluguelPorDia() {
+        return custoAluguelPorDia;
+    }
+
+    public double getCustoAluguelTotal() {
+        return custoAluguelTotal;
+    }
+
+    public void setCustoAluguelPorDia(double custoAluguelPorDia) {
+        this.custoAluguelPorDia = custoAluguelPorDia;
+    }
+
+    public void setCustoAluguelTotal(double custoAluguelTotal) {
+        this.custoAluguelTotal = custoAluguelTotal;
+    }
+    
+    
     
 }

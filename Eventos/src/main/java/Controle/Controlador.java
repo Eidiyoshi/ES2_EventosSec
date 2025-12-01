@@ -17,6 +17,8 @@ import Modelo.Localizacao;
 import Modelo.Status;
 import Modelo.TipoItem;
 import java.time.LocalDateTime;
+import java.util.List;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Sayu
@@ -24,11 +26,10 @@ import java.time.LocalDateTime;
 public class Controlador {
     
     private Catalogo catalogo;
-    private Menu menu;
+    private String eventoSelecionado;
     
-    public Controlador (Menu menu) {
+    public Controlador () {
         catalogo = new Catalogo();
-        this.menu = menu;
     }
     
     public void removerFuncionario(String nomeEvento, String nomeFuncionario)
@@ -42,16 +43,16 @@ public class Controlador {
                 evento.removerFuncionario(func);
                 evento.calcularCustoTotalEvento();
                 evento.calcularCustoPorConvidado();
-                menu.exibirMensagemDeConfirmacao();
+                JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
             }
             else
             {
-                menu.exibirMensagemDeErro();
+                JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
             }
         }
         else
         {
-            menu.exibirMensagemDeErro();
+            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
         }
     }
     
@@ -66,16 +67,16 @@ public class Controlador {
                 evento.removerItemBuffet(item);
                 evento.calcularCustoTotalEvento();
                 evento.calcularCustoPorConvidado();
-                menu.exibirMensagemDeConfirmacao();
+                JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
             }
             else
             {
-                menu.exibirMensagemDeErro();
+                JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
             }
         }
         else
         {
-            menu.exibirMensagemDeErro();
+            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
         }
     }
     
@@ -90,16 +91,16 @@ public class Controlador {
                 evento.removerDespesaAdicional(despesa);
                 evento.calcularCustoTotalEvento();
                 evento.calcularCustoPorConvidado();
-                menu.exibirMensagemDeConfirmacao();
+                JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
             }
             else
             {
-                menu.exibirMensagemDeErro();
+                JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
             }
         }
         else
         {
-            menu.exibirMensagemDeErro();
+            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
         }
     }
     
@@ -116,7 +117,7 @@ public class Controlador {
         eve.calcularCustoPorConvidado();
         eve.atualizarStatus();
         catalogo.adicionarEvento(eve);
-        menu.exibirMensagemDeConfirmacao();
+        JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
     }
     
     public void validarInputsDeRegistroDeDespesaAdicional(String nomeEvento, String nomeDespesa, CategoriaCusto categoriaCusto, String descricao, double custo)
@@ -124,7 +125,7 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-            menu.exibirMensagemDeErro();
+            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
         }
         else
         {
@@ -135,14 +136,14 @@ public class Controlador {
             eve.adicionarDespesaAdicional(des);
             eve.calcularCustoTotalEvento();
             eve.calcularCustoPorConvidado();
-            menu.exibirMensagemDeConfirmacao();
+            JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
         }
         
     }
     
     public String exibirelatorioEventos()
     {
-        return catalogo.exibirEventos();
+        return catalogo.exibirelatorioEventos();
     }
     
     public void cancelarEvento(String nomeEvento)
@@ -150,12 +151,12 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-        	menu.exibirMensagemDeErro();
+        	JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
         }
         else
         {
             catalogo.removerEvento(eve);
-            menu.exibirMensagemDeConfirmacao();
+            JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
         }
     }
     
@@ -164,7 +165,7 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-        	menu.exibirMensagemDeErro();
+        	JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
                 return "";
         }
         else
@@ -178,12 +179,12 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-        	menu.exibirMensagemDeErro();
+        	JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
         }
         else
         {
             eve.alterarStatus(novoStatus);
-            menu.exibirMensagemDeConfirmacao();
+            JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
         }
     }
     
@@ -192,21 +193,21 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-        	menu.exibirMensagemDeErro();
+        	JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
         }
         else
         {
             DespesaAdicional des = eve.buscarDespesaAdicional(nomeDespesa);
             if(des == null)
             {
-                menu.exibirMensagemDeErro();
+                JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
             }
             else
             {
                 des.alterarDespesaAdicional(novoNomeDespesa, novaCategoriaCusto.name(), novaDescricao, novoCusto);
                 eve.calcularCustoTotalEvento();
                 eve.calcularCustoPorConvidado();
-                menu.exibirMensagemDeConfirmacao();
+                JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
             }
         }
     }
@@ -216,7 +217,7 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-            menu.exibirMensagemDeErro();
+            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
         }
         else
         {
@@ -226,7 +227,7 @@ public class Controlador {
             eve.adicionarFuncionario(func);
             eve.calcularCustoTotalEvento();
             eve.calcularCustoPorConvidado();
-            menu.exibirMensagemDeConfirmacao();
+            JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
         }
     }
     
@@ -235,7 +236,7 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-            menu.exibirMensagemDeErro();
+            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
         }
         else
         {
@@ -245,7 +246,7 @@ public class Controlador {
             eve.adicionarFuncionario(novo);
             eve.calcularCustoTotalEvento();
             eve.calcularCustoPorConvidado();
-            menu.exibirMensagemDeConfirmacao();
+            JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
         }
     }
     
@@ -254,7 +255,7 @@ public class Controlador {
         Evento eve = catalogo.buscarEvento(nomeEvento);
         if(eve == null)
         {
-            menu.exibirMensagemDeErro();
+            JOptionPane.showMessageDialog(null, "Erro detectado", "Aviso", 0);
         }
         else
         {
@@ -273,7 +274,12 @@ public class Controlador {
             eve.calcularCustoTotalBuffet();
             eve.calcularCustoTotalEvento();
             eve.calcularCustoPorConvidado();
-            menu.exibirMensagemDeConfirmacao();
+            JOptionPane.showMessageDialog(null, "Operação concluída", "Aviso", 1);
         }
     }
+    public List<String> listarNomesEventos() {
+    return catalogo.listarNomesEventos();
+}
+   
+
 }

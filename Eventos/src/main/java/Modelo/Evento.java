@@ -97,11 +97,11 @@ public class Evento {
         
         for(DespesaAdicional i: despesasAdicionais)
         {
-            i.calcularCustoTotalDespesaFixa(this.custoPorConvidado);
-            i.calcularCustoTotalDespesaVariavel(this.custoPorConvidado, this.quantidadeConvidados);
+            
             aux += i.getCusto();
         }
         
+        aux += localizacao.getCustoAluguelTotal();
         aux += calcularCustoTotalBuffet();
         
         this.custoTotal = aux;
