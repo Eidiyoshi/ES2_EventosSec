@@ -278,8 +278,8 @@ public class Controlador {
         }
     }
     public List<String> listarNomesEventos() {
-    return catalogo.listarNomesEventos();
-}
+        return catalogo.listarNomesEventos();
+    }
    
 
 }

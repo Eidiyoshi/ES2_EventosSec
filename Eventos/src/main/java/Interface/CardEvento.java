@@ -436,6 +436,10 @@ public class CardEvento extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    public String getNomEvento(){
+        return jLabel1.getText();
+    }
+    
     public void exibirMensagemDeConfirmacao()
     {
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
