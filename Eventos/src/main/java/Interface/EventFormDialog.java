@@ -50,7 +50,7 @@ public class EventFormDialog extends JDialog {
 
         panel.add(new JLabel("Nome:")); panel.add(nomeField);
         panel.add(new JLabel("Descrição:")); panel.add(descricaoField);
-        panel.add(new JLabel("Quantidade:")); panel.add(quantidadeField);
+        panel.add(new JLabel("Quantidade de convidados:")); panel.add(quantidadeField);
         panel.add(new JLabel("Nome do local:")); panel.add(localField);
         panel.add(new JLabel("Rua:")); panel.add(ruaField);
         panel.add(new JLabel("Bairro:")); panel.add(bairroField);

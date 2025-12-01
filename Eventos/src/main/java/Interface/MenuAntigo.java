@@ -16,13 +16,13 @@ import javax.swing.*;
  * @author Sayu
  */
 
-public class Menu extends javax.swing.JFrame {
+public class MenuAntigo extends javax.swing.JFrame {
 
-    private Controlador controlador;;
+    private Controlador controlador;
     private static String nomeDoEvento = "Nome do evento:";
 
 
-    public Menu() {
+    public MenuAntigo() {
         controlador = new Controlador();
         initComponents();
     }
@@ -113,9 +113,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1024, 720));
         setMinimumSize(new java.awt.Dimension(1024, 720));
-        setPreferredSize(new java.awt.Dimension(1024, 720));
         setSize(new java.awt.Dimension(1024, 720));
 
         exibirRelatorioEventos.setBackground(new java.awt.Color(255, 204, 204));
@@ -453,7 +451,7 @@ public class Menu extends javax.swing.JFrame {
         panel.add(nomeField);
         panel.add(new JLabel("Descrição:"));
         panel.add(descricaoField);
-        panel.add(new JLabel("Quantidade:"));
+        panel.add(new JLabel("Quantidade de convidados:"));
         panel.add(quantidadeField);
         panel.add(new JLabel("Nome do local:"));
         panel.add(localField);
@@ -794,14 +792,18 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+      //  </editor-fold>
+       //// </editor-fold>
+
+       //  Create and display the form 
       //  </editor-fold>
        //// </editor-fold>
 
@@ -809,7 +811,7 @@ public class Menu extends javax.swing.JFrame {
     
          java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new MenuAntigo().setVisible(true);
             }
         });
     }

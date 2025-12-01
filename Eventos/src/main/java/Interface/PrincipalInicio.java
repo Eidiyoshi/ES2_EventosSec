@@ -23,13 +23,13 @@ import javax.swing.JTextField;
  *
  * @author danie
  */
-public class Inicial extends javax.swing.JFrame {
+public class PrincipalInicio extends javax.swing.JFrame {
     private Controlador controlador;
 
     /**
      * Creates new form Inicial
      */
-    public Inicial() {
+    public PrincipalInicio() {
         initComponents();
         controlador = new Controlador();
     }
@@ -124,7 +124,7 @@ public class Inicial extends javax.swing.JFrame {
         panel.add(nomeField);
         panel.add(new JLabel("Descrição:"));
         panel.add(descricaoField);
-        panel.add(new JLabel("Quantidade:"));
+        panel.add(new JLabel("Quantidade de convidados:"));
         panel.add(quantidadeField);
         panel.add(new JLabel("Nome do local:"));
         panel.add(localField);
@@ -249,20 +249,21 @@ public class Inicial extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inicial().setVisible(true);
+                new PrincipalInicio().setVisible(true);
             }
         });
     }

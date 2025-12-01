@@ -8,6 +8,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>18</maven.compiler.release>
-        <exec.mainClass>Interface.Inicial</exec.mainClass>
+        <exec.mainClass>Interface.PrincipalInicio</exec.mainClass>
+        <sonar.organization>eidiyoshi</sonar.organization>
     </properties>
 </project>
