@@ -215,8 +215,8 @@ public class Evento {
        "  <tr><th>Nome</th><th>Pagamento Total</th></tr>\n" ;
         for(Funcionario i: funcionarios)
                {
-                   resultado += i.getNome()+ " ";
-                   resultado += String.valueOf(i.getPagamentoTotal()) + "\n";
+                   resultado += "<tr><td>" + i.getNome()+ " </td><td>";
+                   resultado += String.valueOf(i.getPagamentoTotal()) + "</td></tr>\n";
                }
        resultado += "</table>\n" +
        "\n" +
@@ -225,8 +225,8 @@ public class Evento {
        "  <tr><th>Nome</th><th>Custo</th></tr>\n" ;
        for(DespesaAdicional i: despesasAdicionais)
                {
-                   resultado += i.getNome() + " ";
-                   resultado += String.valueOf(i.getCusto()) + "\n";
+                   resultado +=  "<tr><td>" + i.getNome() + " </td><td>";
+                   resultado += String.valueOf(i.getCusto()) + "</td></tr>\n";
                }
 
         resultado += "</table>\n" +
