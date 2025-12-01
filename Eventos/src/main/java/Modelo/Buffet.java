@@ -30,8 +30,8 @@ public class Buffet extends Despesa{
         String resultado = "";
         for(ItemBuffet i: ItensBuffet)
         {
-            resultado += i.getNome() + "\n";
-            resultado += i.getCusto() + "\n";
+            resultado +=  "<tr><td>" + i.getNome() + "</td><td>";
+            resultado += i.getCusto() + "</td></tr>\n";
         }
         return resultado;
     }
